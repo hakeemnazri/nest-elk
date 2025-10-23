@@ -29,12 +29,39 @@
 $ npm install
 ```
 
+# NestJS + ELK Stack Integration Examples
+
+Three development approaches to integrate logging:
+
+🔹 **[Filebeat Branch](https://github.com/hakeemnazri/nest-elk/tree/elk-filebeat)** - Logs written to file, Filebeat ships to Logstash, most decoupled approach(Fav)
+🔹 **[Logstash Branch](https://github.com/hakeemnazri/nest-elk/tree/logstash-transport)** - Winston logs sent via TCP to Logstash for processing and filtering  
+🔹 **[Elasticsearch Branch](https://github.com/hakeemnazri/nest-elk/tree/elasticsearch-transport)** - Direct winston transport to Elasticsearch, no intermediaries
+
 ## Compile and run the project
 
 ```bash
 # Run!
 $ docker compose up -d --build
+
+#Test the endpoint:
+   curl http://localhost:3000
+
+   Or visit `http://localhost:3000` in your browser
+
+5. View logs in Kibana:
+   - Open `http://localhost:5601`
+   - Navigate to Discover
+   - Create an index pattern for `app-*` (or your configured prefix)
+   - You should see logs from the API request
 ```
+
+## ⚠️ Security Note
+
+This setup is for **development and learning purposes only**. For production use:
+- Enable Elasticsearch security
+- Add authentication to all services
+- Use proper secrets management
+- Don't expose ports directly to the internet
 
 ## Stay in touch
 
