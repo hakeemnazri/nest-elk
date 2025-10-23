@@ -18,8 +18,6 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
@@ -31,11 +29,40 @@
 $ npm install
 ```
 
+# NestJS + ELK Stack Integration Examples
+
+Three development approaches to integrate logging:
+
+🔹 **[Filebeat Branch](https://github.com/hakeemnazri/nest-elk/tree/elk-filebeat)** - Logs written to file, Filebeat ships to Logstash, most decoupled approach(Fav)
+🔹 **[Logstash Branch](https://github.com/hakeemnazri/nest-elk/tree/logstash-transport)** - Winston logs sent via TCP to Logstash for processing and filtering  
+🔹 **[Elasticsearch Branch](https://github.com/hakeemnazri/nest-elk/tree/elasticsearch-transport)** - Direct winston transport to Elasticsearch, no intermediaries
+
 ## Compile and run the project
 
 ```bash
 # Run!
-docker compose up -d --build
+$ docker compose up -d --build
+
+#Test the endpoint:
+   curl http://localhost:3000
+
+   Or visit `http://localhost:3000` in your browser
+
+5. View logs in Kibana:
+   - Open `http://localhost:5601`
+   - Navigate to Discover
+   - Create an index pattern for `app-*` (or your configured prefix)
+   - You should see logs from the API request
 ```
 
+## ⚠️ Security Note
 
+This setup is for **development and learning purposes only**. For production use:
+- Enable Elasticsearch security
+- Add authentication to all services
+- Use proper secrets management
+- Don't expose ports directly to the internet
+
+## Stay in touch
+
+- Author - [Hakeem Nazri](https://www.threads.com/@_hakeemnazri_)
